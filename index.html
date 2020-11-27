@@ -34,7 +34,7 @@
                 <!-- Breathing -->
                 <div class="container border">
                     <div class="row text-center">
-                        <p>&#9679;</p>
+                        <canvas id="myCanvas" width="200" height="200" style="border:1px solid #d3d3d3;margin:auto;"></canvas>
                     </div>
                 </div>
             </div>
@@ -63,5 +63,35 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script>
+        (function(){
+            // Breathing 
+            var html_canvas = document.getElementById("myCanvas");
+            var canvas_context = html_canvas.getContext("2d");
+
+            let x = 100;
+            let y = 100;
+            let radius = 0;
+            let radius_max = 100;
+            let growth_direction = 1;
+            let a = 0;
+
+            setInterval(function(){
+            radius = radius + growth_direction; //
+            
+            if (radius_max <= radius || radius <= 0) {
+                growth_direction *= -1;
+            }
+            
+            canvas_context.clearRect(0, 0, 200, 200);
+            canvas_context.beginPath();
+            canvas_context.arc(x, y, radius, a, 2*Math.PI);
+            canvas_context.strokeStyle = '#FFFFFF';
+            canvas_context.stroke();
+            }, 40);
+
+        })();
+    </script>
 </body>
 </html>
